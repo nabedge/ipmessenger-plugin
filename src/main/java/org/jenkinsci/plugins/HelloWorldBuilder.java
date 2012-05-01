@@ -1,4 +1,5 @@
 package org.jenkinsci.plugins;
+import hudson.EnvVars;
 import hudson.Launcher;
 import hudson.Extension;
 import hudson.util.FormValidation;
@@ -8,6 +9,9 @@ import hudson.model.AbstractProject;
 import hudson.tasks.Builder;
 import hudson.tasks.BuildStepDescriptor;
 import net.sf.json.JSONObject;
+
+import org.jenkinsci.plugins.tokenmacro.MacroEvaluationException;
+import org.jenkinsci.plugins.tokenmacro.TokenMacro;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.QueryParameter;
@@ -28,7 +32,7 @@ import java.io.IOException;
  *
  * <p>
  * When a build is performed, the {@link #perform(AbstractBuild, Launcher, BuildListener)}
- * method will be invoked. 
+ * method will be invoked.
  *
  * @author Kohsuke Kawaguchi
  */
@@ -54,11 +58,25 @@ public class HelloWorldBuilder extends Builder {
         // This is where you 'build' the project.
         // Since this is a dummy, we just say 'hello world' and call that a build.
 
+  		String text = null;
+		try {
+			text = TokenMacro.expandAll( build, listener, name );
+		} catch (MacroEvaluationException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
         // This also shows how you can consult the global configuration of the builder
-        if (getDescriptor().getUseFrench())
-            listener.getLogger().println("Bonjour, "+name+"!");
-        else
-            listener.getLogger().println("Hello, "+name+"!");
+        if (getDescriptor().getUseFrench()) {
+            listener.getLogger().println("Bonjour, "+text+"!");
+        } else {
+            listener.getLogger().println("Hello, "+text+" ! ");
+        }
         return true;
     }
 
@@ -107,7 +125,7 @@ public class HelloWorldBuilder extends Builder {
         }
 
         public boolean isApplicable(Class<? extends AbstractProject> aClass) {
-            // Indicates that this builder can be used with all kinds of project types 
+            // Indicates that this builder can be used with all kinds of project types
             return true;
         }
 
