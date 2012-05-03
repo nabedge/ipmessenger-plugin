@@ -30,7 +30,6 @@ import org.kohsuke.stapler.StaplerRequest;
 public class IPMessengerNotifier extends Notifier {
 
     private String fromHost = "";
-    private String jenkinsUserName = "jenkins-ci";
     private final String charset = "MS932";
     private final int port = 2425;
     private final String messageTemplate;
@@ -125,9 +124,9 @@ public class IPMessengerNotifier extends Notifier {
         return (DescriptorImpl) super.getDescriptor();
     }
 
-    private ArrayList<String> createRecipientHostList(String str) {
+    private ArrayList<String> createRecipientHostList(String recipientHosts) {
         ArrayList<String> result = new ArrayList<String>();
-        for (String s : str.split("\n")) {
+        for (String s : recipientHosts.split("\n")) {
             result.add(s.replaceAll("\\s+", ""));
         }
         return result;
@@ -146,7 +145,7 @@ public class IPMessengerNotifier extends Notifier {
     private String createTeregram(int command, String message) {
         String userName = getDescriptor().getJenkinsUserName();
         if (userName == null || "".equals(userName)) {
-            userName = jenkinsUserName;
+            userName = "jenkins-ci";
         }
         StringBuffer sb = new StringBuffer();
         sb.append(1);// ipmessenger protocol version
