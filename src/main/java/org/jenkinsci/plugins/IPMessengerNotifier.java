@@ -58,7 +58,7 @@ public class IPMessengerNotifier extends Notifier {
             BuildListener listener) {
 
         PrintStream logger = listener.getLogger();
-        String message = "Build " + build.getResult().toString() + "\n";
+        String message = "BUILD " + build.getResult().toString() + "\n";
 
         try {
             fromHost = InetAddress.getLocalHost().getHostName();
