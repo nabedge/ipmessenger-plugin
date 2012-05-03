@@ -32,6 +32,7 @@ public class IPMessengerNotifier extends Notifier {
     private String fromHost = "";
     private final String charset = "MS932";
     private final int port = 2425;
+    private final int sleep = 2500;
     private final String messageTemplate;
     private final String recipientHosts;
 
@@ -69,7 +70,7 @@ public class IPMessengerNotifier extends Notifier {
         try {
             message += TokenMacro.expandAll(build, listener, messageTemplate);
             sendNooperation(logger);
-            Thread.sleep(1500);
+            Thread.sleep(sleep);
             for (String toHost : createRecipientHostList(recipientHosts)) {
                 sendMsg(message, toHost, logger);
             }
