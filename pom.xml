@@ -11,6 +11,11 @@
     <artifactId>ipmessenger-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
+    <name>IPMessenger plugin</name>
+    <description>
+        Sends build notifications to IPMessenger client.
+        See http://ipmsg.org/ about IPMessenger
+    </description>
 
     <repositories>
         <repository>

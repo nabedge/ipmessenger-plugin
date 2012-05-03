@@ -11,10 +11,10 @@
     tags they use. Views are always organized according to its owner class,
     so it should be straightforward to find them.
   -->
-  <f:section title="Hello World Builder">
-    <f:entry title="French" field="useFrench"
-      description="Check if we should say hello in French">
-      <f:checkbox />
+  <f:section title="IPMessenger Notifier">
+    <f:entry title="Jenkins User Name" field="jenkinsUserName"
+      description="Messege sender name of jenkins on IPMessenger">
+      <f:textbox default="jenkins-ci" />
     </f:entry>
   </f:section>
 </j:jelly>
