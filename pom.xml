@@ -25,6 +25,12 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:ssh://github.com/nabedge/ipmessenger-plugin.git</connection>
+        <developerConnection>scm:git:ssh://github.com/nabedge/ipmessenger-plugin.git</developerConnection>
+        <url>https://github.com/nabedge/ipmessenger-plugin</url>
+    </scm>
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
