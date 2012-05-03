@@ -17,6 +17,14 @@
         See http://ipmsg.org/ about IPMessenger
     </description>
 
+    <developers>
+        <developer>
+            <id>nabedge</id>
+            <name>nabedge</name>
+            <email>nabedge@gmail.com</email>
+        </developer>
+    </developers>
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
